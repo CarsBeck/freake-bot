@@ -12,7 +12,7 @@ struct Bot;
 impl EventHandler for Bot {
     async fn message(&self, ctx: Context, msg: Message) {
         if msg.content == "~freaky" {
-            if let Err(e) = msg.channel_id.say(&ctx.http, "*I'm FreakBot!*").await {
+            if let Err(e) = msg.channel_id.say(&ctx.http, "https://tenor.com/view/freakbob-gif-11176155028712317218").await {
                 error!("Error sending message: {:?}", e);
             }
         }
