@@ -14,6 +14,13 @@ async fn hello(ctx: Context<'_>) -> Result<(), Error> {
     Ok(())
 }
 
+#[poise::command(slash_command)]
+async fn freake(ctx: Context<'_>) -> Result<(), Error> {
+    ctx.say("GAVIN IS A FREAK!").await?;
+    Ok(())
+}
+
+
 #[shuttle_runtime::main]
 async fn main(#[shuttle_runtime::Secrets] secret_store: SecretStore) -> ShuttleSerenity {
     // Get the discord token set in `Secrets.toml`
