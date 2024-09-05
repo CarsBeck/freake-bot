@@ -7,10 +7,9 @@ struct Data {} // User data, which is stored and accessible in all command invoc
 type Error = Box<dyn std::error::Error + Send + Sync>;
 type Context<'a> = poise::Context<'a, Data, Error>;
 
-/// Responds with "world!"
 #[poise::command(slash_command)]
 async fn hello(ctx: Context<'_>) -> Result<(), Error> {
-    ctx.say("world!").await?;
+    ctx.say("Hello freaks!").await?;
     Ok(())
 }
 
@@ -20,6 +19,11 @@ async fn freake(ctx: Context<'_>) -> Result<(), Error> {
     Ok(())
 }
 
+#[poise::command(slash_command)]
+async fn freakebob(ctx: Context<'_>) -> Result<(), Error> {
+    ctx.say("https://tenor.com/view/freakbob-gif-11176155028712317218").await?;
+    Ok(())
+}
 
 #[shuttle_runtime::main]
 async fn main(#[shuttle_runtime::Secrets] secret_store: SecretStore) -> ShuttleSerenity {
@@ -30,7 +34,7 @@ async fn main(#[shuttle_runtime::Secrets] secret_store: SecretStore) -> ShuttleS
 
     let framework = poise::Framework::builder()
         .options(poise::FrameworkOptions {
-            commands: vec![hello(), freake()],
+            commands: vec![hello(), freake(), freakebob()],
             ..Default::default()
         })
         .setup(|ctx, _ready, framework| {
